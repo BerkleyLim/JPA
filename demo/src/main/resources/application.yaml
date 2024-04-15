@@ -1,0 +1,64 @@
+server:
+  shutdown: graceful
+
+spring:
+  devtools:
+    livereload:
+      enabled: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/board?useSSL=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&allowPublicKeyRetrieval=true&autoReconnect=true
+    password: Gray012! # 비밀번호 수정
+    username: root
+
+  hikari:
+    data-source-properties:
+      cachePrepStmts: true
+      prepStmtCacheSize: 250 # 연결당 캐쉬가 준비할 명령문의 수 지정
+      prepStmtCacheSqlLimit: 2048
+      useServerPrepStmts: true # 서버측 준비된 명령문 지원, 성능 향상 도움됨
+    connectionTimeout: 30000
+    maximumPoolSize: 10
+    max-lifetime: 1799995
+    # minimum-idle: 1000
+    # poolName : HikariCP
+    readOnly: false
+
+
+    jpa:
+      database: mysql
+      database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+      hibernate:
+        ddl-auto: none
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      open-in-view: false
+      generate-ddl: false
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQLInnoDBDialect
+          show_sql: true
+          format_sql: true
+          use_sql_comments: true
+          temp:
+            use_jdbc_metadata_defaults: false
+          jdbc:
+            lob:
+              non_contextual_creation: true
+      show-sql: true
+      sql:
+        init:
+          encoding: UTF-8
+
+
+logging:
+  level:
+    # root: debug
+#    com.zaxxer.hikari.pool.HikariPool: debug
+    org:
+      #      hibernate: info
+      hibernate:
+        type:
+          descriptor:
+            sql: trace

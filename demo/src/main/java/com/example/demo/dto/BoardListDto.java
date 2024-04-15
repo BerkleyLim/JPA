@@ -2,9 +2,11 @@ package com.example.demo.dto;
 
 
 import com.querydsl.core.annotations.QueryProjection;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class BoardListDto {
     private Long bno;           // 게시판번호
     private Long cno;           // 댓글번호
